@@ -1,49 +1,79 @@
-[gd_scene load_steps=2 format=3 uid="uid://cewwhk5ummbai"]
+[gd_scene load_steps=3 format=3 uid="uid://cewwhk5ummbai"]
 
 [ext_resource type="Script" path="res://MainGameScreen.cs" id="1_aewfj"]
+[ext_resource type="PackedScene" uid="uid://gx5k554uevs8" path="res://building_object.tscn" id="2_383cq"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("allBuildings")]
 script = ExtResource("1_aewfj")
+allBuildings = [NodePath("Building1"), NodePath("Building2"), NodePath("Building3"), NodePath("Building4")]
+
+[node name="Title" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 1.0
+offset_right = 723.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 0.8, 0.101961, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "Burger Klicker"
 
 [node name="BigButton" type="Button" parent="."]
-offset_left = 485.0
-offset_top = 168.0
-offset_right = 738.0
-offset_bottom = 399.0
+offset_left = 427.0
+offset_top = 225.0
+offset_right = 680.0
+offset_bottom = 456.0
 action_mode = 0
 text = "Click Me!"
 
 [node name="QuitButton" type="Button" parent="."]
-offset_left = 881.0
-offset_top = 7.0
-offset_right = 1134.0
-offset_bottom = 120.0
+offset_left = 889.0
+offset_top = 529.0
+offset_right = 1142.0
+offset_bottom = 642.0
 text = "Quit Game"
 
 [node name="ResourceLabel" type="Label" parent="."]
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 374.0
-offset_bottom = 46.0
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 372.0
+offset_bottom = 50.0
 theme_type_variation = &"HeaderMedium"
 text = "Money: $0"
 vertical_alignment = 1
 
-[node name="TempBuildingButton" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 131.0
-offset_right = 230.0
-offset_bottom = 162.0
-text = "Temp Building $10, +$0.1/s
-"
+[node name="Building1" parent="." instance=ExtResource("2_383cq")]
+offset_left = 4.0
+offset_top = 64.0
+offset_right = 360.0
+offset_bottom = 206.0
+sellPenaltyMultiplier = 0.8
 
-[node name="TempBuildingLabel" type="Label" parent="."]
-offset_left = 21.0
-offset_top = 169.0
-offset_right = 217.0
-offset_bottom = 192.0
-text = "Temp Buildings Owned: 0"
+[node name="Building2" parent="." instance=ExtResource("2_383cq")]
+offset_left = 4.0
+offset_top = 209.0
+offset_right = 360.0
+offset_bottom = 351.0
+baseCost = 100
+sellPenaltyMultiplier = 0.8
+baseMoneyPerSecond = 2.0
+
+[node name="Building3" parent="." instance=ExtResource("2_383cq")]
+offset_left = 5.0
+offset_top = 355.0
+offset_right = 361.0
+offset_bottom = 497.0
+baseCost = 1000
+sellPenaltyMultiplier = 0.8
+baseMoneyPerSecond = 30.0
+
+[node name="Building4" parent="." instance=ExtResource("2_383cq")]
+offset_left = 5.0
+offset_top = 501.0
+offset_right = 361.0
+offset_bottom = 643.0
+baseCost = 10000
+baseMoneyPerSecond = 400.0
 
 [connection signal="pressed" from="BigButton" to="." method="_on_big_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="TempBuildingButton" to="." method="_on_temp_building_button_pressed"]
